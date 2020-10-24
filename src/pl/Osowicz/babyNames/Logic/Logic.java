@@ -5,7 +5,7 @@ import pl.Osowicz.babyNames.resources.Names;
 
 import java.util.*;
 
-public class Logic {
+public class Logic<T> {
     Reader reader = new Reader();
     ArrayList<Names> names = new ArrayList<>();
 
@@ -38,12 +38,10 @@ public class Logic {
         names.sort(Names::compareTo);
     }
 
-    int howManyNames = 10;
-
-    public void mostPopularNamesPrinter() {
-        System.out.println("Most popular names: ");
-        for (int i = 0; i < howManyNames; i++) {
-            System.out.println(names.get(i));
+    public void mostPopularPrinter(ArrayList<T> list, int howMany){
+        System.out.println("Most popular: ");
+        for (int i = 0; i < howMany; i++) {
+            System.out.println(list.get(i));
         }
     }
 
@@ -86,34 +84,47 @@ public class Logic {
         lettersList.sort(Letters::compareTo);
     }
 
-    int howManyLetters = 3;
-
-    public void mostPopularStartLettersPrinter() {
-        System.out.println("Most popular start letters: ");
-        for (int i = 0; i < howManyLetters; i++) {
-            System.out.println(lettersList.get(i));
-        }
-    }
-
     public ArrayList<Names> prepareList(){
         return convertToNamesObjects(reader.fileReader());
     }
 
+    int howManyNames = 10;
+
     public void tenMostPopularNameFunction(){
         mostPopularNames();
-        mostPopularNamesPrinter();
+        mostPopularPrinter((ArrayList<T>) names, howManyNames);
     }
 
     public void mostPopularFemaleNameFunction(){
         mostPopularFemaleName();
     }
 
+    int howManyLetters = 3;
+
     public void threeMostPopularLettersFunction(){
         convertNamesToLetterList();
         mostPopularStartLetters();
-        mostPopularStartLettersPrinter();
+        mostPopularPrinter((ArrayList<T>) lettersList, howManyLetters);
     }
 }
+
+//    public void mostPopularNamesPrinter() {
+//        System.out.println("Most popular names: ");
+//        for (int i = 0; i < howManyNames; i++) {
+//            System.out.println(names.get(i));
+//        }
+//    }
+//
+//    public void mostPopularStartLettersPrinter() {
+//        System.out.println("Most popular start letters: ");
+//        for (int i = 0; i < howManyLetters; i++) {
+//            System.out.println(lettersList.get(i));
+//        }
+//    }
+
+
+
+
     //            Names imie = new Names(yearOfBirth, gender, ethnicity, firstName, count, rank);
 //
 //            if (names.size() == 0){

@@ -1,8 +1,6 @@
 package pl.Osowicz.babyNames.Main;
 
 import pl.Osowicz.babyNames.Logic.Logic;
-import pl.Osowicz.babyNames.Logic.Reader;
-import pl.Osowicz.babyNames.resources.Names;
 
 public class main {
     public static void main(String[] args) {
