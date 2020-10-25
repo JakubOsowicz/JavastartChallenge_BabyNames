@@ -9,7 +9,7 @@ public class Logic<T> {
     Reader reader = new Reader();
     ArrayList<Names> names = new ArrayList<>();
 
-    public ArrayList<Names> convertToNamesObjects(ArrayList<String> namesStrings) {
+    private ArrayList<Names> convertToNamesObjects(ArrayList<String> namesStrings) {
         for (String nameString : namesStrings) {
             String[] parts = nameString.split(",");
             int yearOfBirth = Integer.parseInt(parts[0]);
@@ -23,7 +23,7 @@ public class Logic<T> {
         return names;
     }
 
-    public void mostPopularNames() {
+    private void mostPopularNames() {
         // search duplicate. add count.value to first object with %firstName% and remove object with duplicate name
         for (int i = 0; i < names.size(); i++) {
             for (int j = i + 1; j < names.size(); j++) {
@@ -38,7 +38,7 @@ public class Logic<T> {
         names.sort(Names::compareTo);
     }
 
-    public void mostPopularPrinter(ArrayList<T> list, int howMany){
+    private void mostPopularPrinter(ArrayList<T> list, int howMany){
         System.out.println("Most popular: ");
         for (int i = 0; i < howMany; i++) {
             System.out.println(list.get(i));
@@ -48,7 +48,7 @@ public class Logic<T> {
     String female = "Female";
     int femaleNameCount = 0;
 
-    public void mostPopularFemaleName() {
+    private void mostPopularFemaleName() {
         System.out.println("Most popular female name: ");
         for (int i = 0; i < names.size(); i++) {
             if (femaleNameCount < 1) {
@@ -62,7 +62,7 @@ public class Logic<T> {
 
     ArrayList<Letters> lettersList = new ArrayList<>();
 
-    public ArrayList<Letters> convertNamesToLetterList() {
+    private ArrayList<Letters> convertNamesToLetterList() {
         for (int i = 0; i < names.size(); i++) {
             char firstLetter = names.get(i).getFirstName().charAt(0);
             String uppercaseFirstLetter = Character.toString(firstLetter).toUpperCase();
@@ -71,7 +71,7 @@ public class Logic<T> {
         return lettersList;
     }
 
-    public void mostPopularStartLetters() {
+    private void mostPopularStartLetters() {
         for (int i = 0; i < lettersList.size(); i++) {
             for (int j = i + 1; j < lettersList.size(); j++) {
                 if (lettersList.get(i).getLetter().equals(lettersList.get(j).getLetter())) {
