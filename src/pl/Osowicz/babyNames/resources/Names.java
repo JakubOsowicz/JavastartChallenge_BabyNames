@@ -52,6 +52,6 @@ public class Names implements Comparable<Names> {
 
     @Override
     public String toString() {
-        return firstName + ": liczba - " + count;
+        return "Name: " + firstName + ": count - " + count;
     }
 }

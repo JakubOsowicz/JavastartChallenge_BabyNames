@@ -23,7 +23,7 @@ public class Letters implements Comparable<Letters> {
 
     @Override
     public String toString() {
-        return "Litera: " + letter + ", names starts on this letter: " + count;
+        return "Letter: " + letter + ", names starts on this letter: " + count;
     }
 
 
