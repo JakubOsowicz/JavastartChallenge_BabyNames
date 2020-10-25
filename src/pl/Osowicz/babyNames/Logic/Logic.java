@@ -9,7 +9,7 @@ public class Logic<T> {
     Reader reader = new Reader();
     ArrayList<Names> names = new ArrayList<>();
 
-    private ArrayList<Names> convertToNamesObjects(ArrayList<String> namesStrings) {
+    private void convertToNamesObjects(ArrayList<String> namesStrings) {
         for (String nameString : namesStrings) {
             String[] parts = nameString.split(",");
             int yearOfBirth = Integer.parseInt(parts[0]);
@@ -20,10 +20,10 @@ public class Logic<T> {
             int rank = Integer.parseInt(parts[5]);
             names.add(new Names(yearOfBirth, gender, ethnicity, firstName, count, rank));
         }
-        return names;
     }
 
-    private void mostPopularNames() {
+    private void removeDuplicateNames() {
+        // bruteforce method.
         // search duplicate. add count.value to first object with %firstName% and remove object with duplicate name
         for (int i = 0; i < names.size(); i++) {
             for (int j = i + 1; j < names.size(); j++) {
@@ -62,16 +62,15 @@ public class Logic<T> {
 
     ArrayList<Letters> lettersList = new ArrayList<>();
 
-    private ArrayList<Letters> convertNamesToLetterList() {
+    private void convertNamesToLetterList() {
         for (int i = 0; i < names.size(); i++) {
             char firstLetter = names.get(i).getFirstName().charAt(0);
             String uppercaseFirstLetter = Character.toString(firstLetter).toUpperCase();
             lettersList.add(new Letters(uppercaseFirstLetter, 1));
         }
-        return lettersList;
     }
 
-    private void mostPopularStartLetters() {
+    private void removeDuplicateLetters() {
         for (int i = 0; i < lettersList.size(); i++) {
             for (int j = i + 1; j < lettersList.size(); j++) {
                 if (lettersList.get(i).getLetter().equals(lettersList.get(j).getLetter())) {
@@ -84,14 +83,17 @@ public class Logic<T> {
         lettersList.sort(Letters::compareTo);
     }
 
-    public ArrayList<Names> prepareList(){
-        return convertToNamesObjects(reader.fileReader());
+    public void prepareFullList(){
+        convertToNamesObjects(reader.fileReader());
     }
 
     int howManyNames = 10;
 
+    public void removeDuplicateNamesFunction(){
+        removeDuplicateNames();
+    }
+
     public void tenMostPopularNameFunction(){
-        mostPopularNames();
         mostPopularPrinter((ArrayList<T>) names, howManyNames);
     }
 
@@ -103,7 +105,7 @@ public class Logic<T> {
 
     public void threeMostPopularLettersFunction(){
         convertNamesToLetterList();
-        mostPopularStartLetters();
+        removeDuplicateLetters();
         mostPopularPrinter((ArrayList<T>) lettersList, howManyLetters);
     }
 }

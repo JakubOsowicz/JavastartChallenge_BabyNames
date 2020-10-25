@@ -15,7 +15,7 @@ public class Reader {
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             String line;
-            bufferedReader.readLine();
+            bufferedReader.readLine(); // to ignore header
             while ((line = bufferedReader.readLine()) != null ){
                 lineList.add(line);
             }
